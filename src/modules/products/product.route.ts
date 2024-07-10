@@ -4,6 +4,9 @@ const router = express.Router();
 
 
 router.post("/create-product", ProductControllers.createProduct);
+router.get("/products", ProductControllers.getProducts);
+router.patch("/products/:productId", ProductControllers.updateProduct);
+router.delete("/products/:productId", ProductControllers.deleteProduct);
 
 
 
