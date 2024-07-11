@@ -11,3 +11,11 @@ export type TProduct = {
   createdAt? : string,
   updatedAt? : string,
 };
+
+
+export type TProductsQuery = {
+  searchValue?: string,
+    category?: string,
+    priceRange?: string,
+    sortByPrice?: string
+}

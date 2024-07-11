@@ -16,11 +16,23 @@ const createProduct = catchAsync(async (req: Request, res: Response) => {
 
 
 const getProducts = catchAsync(async (req: Request, res: Response) => {
-  const result = await ProductServices.getProductsFromDB();
+  const result = await ProductServices.getProductsFromDB(req.query);
 
   res.json({
     success: true,
     message: "Products is fetched successfully !",
+    data: result,
+  });
+});
+
+
+const getSingleProduct = catchAsync(async (req: Request, res: Response) => {
+  const productId = req.params.productId;
+  const result = await ProductServices.getSingleProductFromDB(productId);
+
+  res.json({
+    success: true,
+    message: "Product is fetched successfully !",
     data: result,
   });
 });
@@ -54,5 +66,6 @@ export const ProductControllers = {
   createProduct,
    getProducts,
    updateProduct,
-   deleteProduct
+   deleteProduct,
+   getSingleProduct
 };
