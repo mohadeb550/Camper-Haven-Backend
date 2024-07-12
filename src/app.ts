@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import cors from "cors";
 import { ProductRoutes } from "./modules/products/product.route";
 import globalErrorHandler from "./middleware/globalErrorhandler";
+import { OrderRoutes } from "./modules/orders/order.route";
 
 const app = express();
 
@@ -9,8 +10,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// routes 
 app.use(ProductRoutes);
+app.use(OrderRoutes);
 app.use(globalErrorHandler);
+
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello Next");
