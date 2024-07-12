@@ -48,6 +48,17 @@ const getSingleProductFromDB = async (productId: string) => {
   return result;
 };
 
+
+const getBestSellingProductsFromDB = async () => {
+  const result = await Product.find().sort({ rating : -1 }).limit(8);
+  return result;
+};
+
+const getFeaturedProductsFromDB = async () => {
+  const result = await Product.find().sort({ createdAt : -1 }).limit(8);
+  return result;
+};
+
 const updateProductIntoDB = async (productId: string, payload: Partial<TProduct>) => {
   const result = await Product.findByIdAndUpdate(productId, payload, {new : true})
   return result;
@@ -64,6 +75,8 @@ export const ProductServices = {
   getProductsFromDB,
   updateProductIntoDB,
   deleteProductFromDB,
-  getSingleProductFromDB
+  getSingleProductFromDB,
+  getBestSellingProductsFromDB,
+  getFeaturedProductsFromDB
 };
 

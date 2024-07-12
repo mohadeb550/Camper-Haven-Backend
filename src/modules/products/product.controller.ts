@@ -37,6 +37,27 @@ const getSingleProduct = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+
+const getBestSellingProducts = catchAsync(async (req: Request, res: Response) => {
+  const result = await ProductServices.getBestSellingProductsFromDB();
+
+  res.json({
+    success: true,
+    message: "Products is fetched successfully !",
+    data: result,
+  });
+});
+
+const getFeaturedProducts = catchAsync(async (req: Request, res: Response) => {
+  const result = await ProductServices.getFeaturedProductsFromDB();
+
+  res.json({
+    success: true,
+    message: "Products is fetched successfully !",
+    data: result,
+  });
+});
+
 const updateProduct = catchAsync(async (req: Request, res: Response) => {
   const productId = req.params.productId;
   const payload = req.body;
@@ -67,5 +88,7 @@ export const ProductControllers = {
    getProducts,
    updateProduct,
    deleteProduct,
-   getSingleProduct
+   getSingleProduct,
+   getBestSellingProducts,
+   getFeaturedProducts
 };
